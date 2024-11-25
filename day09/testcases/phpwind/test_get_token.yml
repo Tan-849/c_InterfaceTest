@@ -1,0 +1,18 @@
+- feature: 论坛模式
+  story: phpwind首页接口
+  title: 验证phpwind首页接口正常返回
+  request:
+    method: "get"
+    url: ${env(phpwind_base_url)}/phpwind/index.php?m=u&c=login&a=dorun
+  extract:
+    csrf_token: [ text,'name="csrf_token" value="(.*?)"', 0 ]
+  validate:
+    equals:
+      预期状态码为200: [200,status_code]
+    contains:
+      预期包含csrf_token: [csrf_token,"${read_yml()}"]
+#    暂时没用到 db_equals 先注释掉
+#    db_equals:
+#      预期响应报文内容与sql查询内容 相等: ["select accessKey from user",text]
+    db_contains:
+      预期响应报文中的csrf_token与sql查询结果的内容都包含csrf_token: ["select accessKey from user",text]

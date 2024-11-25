@@ -1,0 +1,8 @@
+-
+  feature: 论坛模式
+  story: phpwind首页接口
+  title: 验证phpwind首页接口正常返回
+  request:
+    method: "get"
+    url: http://47.187.116.139/phpwind/
+  validate: null

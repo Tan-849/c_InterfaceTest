@@ -1,0 +1,13 @@
+-
+  feature: 加密模块
+  story: rsa加密接口
+  title: rsa加密接口
+  request:
+    method: post
+    url: ${env(encryption_base_url)}/rsalogin
+    data:
+      username: ${rsa_encode(admin)}
+      password: ${rsa_encode(123)}
+  validate:
+    equals:
+      断言状态码为200: [200,status_code ]

@@ -1,0 +1,17 @@
+-
+  feature: 论坛模式
+  story: 登陆接口
+  title: 验证phpwind登陆接口成功返回
+  request:
+    method: post
+    url: http://47.107.116.139/phpwind/index.php?m=u&c=login&a=dorun
+    data:
+      username: tanhaowei
+      password: 123456
+      csrf_token: ${csrf_token}
+      backurl: http://47.107.116.139/phpwind/
+      invite: ""
+    headers:
+      Accept: "application/json,text/javascript,/q=0.01"
+      X-Requested-With: XMLHttpRequest
+  validate: null

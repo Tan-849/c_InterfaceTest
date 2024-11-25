@@ -1,0 +1,13 @@
+-
+  feature: 加密模块
+  story: md5加密接口
+  title: md5加密接口
+  request:
+    method: post
+    url: ${env(encryption_base_url)}/md5login
+    data:
+      username: ${md5_encode(admin)}
+      password: ${md5_encode(123)}
+  validate:
+    equals:
+      断言状态码为200: [200,status_code ]

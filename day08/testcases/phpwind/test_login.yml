@@ -1,0 +1,29 @@
+-
+  feature: 论坛模式
+  story: 登陆接口
+  title: 验证phpwind登陆接口成功返回
+  request:
+    method: post
+    url: http://47.107.116.139/phpwind/index.php?m=u&c=login&a=dorun
+    data:
+      username: $ddt{username}
+      password: $ddt{password}
+      csrf_token: ${read_yml(csrf_token)}
+      backurl: http://47.107.116.139/phpwind/
+      invite: ""
+    headers:
+      Accept: "application/json,text/javascript,/q=0.01"
+      X-Requested-With: XMLHttpRequest
+  parametrize:
+    - [ "username","password" ]
+    # 正例
+    - [ "tanhaowei","123456" ]
+    # 反例
+    - [ "admin","123" ]
+    - [ "admin","admin" ]
+    - [ "123",123 ]
+  extract:
+    state: [json,'$.state',0]
+  validate:
+    equals:
+      预期状态码为200: [ 200,status_code ]
